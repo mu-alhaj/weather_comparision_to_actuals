@@ -2,8 +2,8 @@ name: Weather Logger
 
 on:
   schedule:
-    # Runs every day at 06:00 UTC (adjust as you like)
-    - cron: "0 6 * * *"
+    # Runs every day at 12:00 UTC (adjust as you like)
+    - cron: "0 12 * * *"
   workflow_dispatch:  # lets you run it manually from the Actions tab too
 
 permissions:
