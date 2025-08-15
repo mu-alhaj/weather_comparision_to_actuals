@@ -1,0 +1,32 @@
+name: Weather Logger
+
+on:
+  schedule:
+    # Runs every day at 06:00 UTC (adjust as you like)
+    - cron: "0 6 * * *"
+  workflow_dispatch:  # lets you run it manually from the Actions tab too
+
+permissions:
+  contents: write  # allow pushing commits back to the repo
+
+jobs:
+  run-weather:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Make script executable
+        run: chmod +x rx_poc.sh
+
+      - name: Run script
+        run: ./rx_poc.sh
+
+      - name: Commit & push updated log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rx_poc.log
+          git commit -m "Update weather log $(date -u +'%Y-%m-%d %H:%M:%S UTC')" || echo "No changes to commit"
+          git push
