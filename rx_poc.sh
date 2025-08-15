@@ -54,10 +54,10 @@ curl wttr.in/$city?T > weather_report.txt
 
 # 		From the text file parse todays temp values.
 
-obs_t=$(grep -oP '[+-]?\d+\(\d+\)' weather_report.txt | awk 'NR==1')	# This command will list all the maches for the pattern +/-dd(dd) and pick the first.
+obs_t=$(grep -oP '[+-]?\d+\(\d+\)' weather_report.txt | awk 'NR==1' | cut -d "(" -f1)	# This command will list all the maches for the pattern +/-dd(dd) and pick the first.
 echo "Todays temp is : $obs_t"
 
-fc_t=$(grep -oP '[+-]?\d+\(\d+\)' weather_report.txt | awk 'NR==7')	# Here we pick the 7th, for tomorrow's noon.
+fc_t=$(grep -oP '[+-]?\d+\(\d+\)' weather_report.txt | awk 'NR==7' | cut -d "(" -f1)	# Here we pick the 7th, for tomorrow's noon.
 echo "Tomorrows temp is : $fc_t"
 
 #		Date

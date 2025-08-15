@@ -1,0 +1,4 @@
+year	month	day	obs_temp	fc_temp	accuracy	accuracy_range
+2025	08	13	+23		+25	2		good
+2025	08	14	+23		+24	1		excellent
+2025	08	15	+29		+29	0		excellent
